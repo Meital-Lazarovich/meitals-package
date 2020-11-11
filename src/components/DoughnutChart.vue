@@ -1,43 +1,48 @@
 <template>
-  <canvas id="doughnut" />
+    <canvas id='doughnut' />
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import Chart from 'chart.js'
+<script lang='ts'>
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import Chart from 'chart.js';
 
 @Component
 export default class DoughnutChart extends Vue {
-  @Prop({ default: [] }) readonly labels!: Array<string>
-  @Prop({ default: [] }) readonly colors!: Array<string>
-  @Prop({ default: [] }) readonly data!: Array<number>
-  @Prop({
-    default: () => {
-      return Chart.defaults.doughnut
-    }
-  })
-  readonly options: object | undefined
-
-  mounted() {
-    this.createChart({
-      datasets: [
-        {
-          data: this.data,
-          backgroundColor: this.colors
+    @Prop({ default: [] }) readonly labels!: Array<string>;
+    @Prop({ default: [] }) readonly data!: Array<number>;
+    @Prop({
+        default: () => {
+            return ['#FF9999', '#FFCC99', '#FFFF99', '#CCFF99', '#99FF99', '#99FFFF', '#99CCFF', '#CC99FF', '#FF99FF', '#FF99CC']
         }
-      ],
-      labels: this.labels
+    }) 
+    readonly colors!: Array<string>;
+    @Prop({
+        default: () => {
+            return Chart.defaults.doughnut;
+        },
     })
-  }
+    readonly options: object | undefined;
 
-  createChart(chartData: object) {
-    const canvas = document.getElementById('doughnut') as HTMLCanvasElement
-    const options = {
-      type: 'doughnut',
-      data: chartData,
-      options: this.options
+    mounted() {
+        this.createChart({
+            datasets: [
+                {
+                    data: this.data,
+                    backgroundColor: this.colors,
+                },
+            ],
+            labels: this.labels,
+        });
     }
-    new Chart(canvas, options)
-  }
+
+    createChart(chartData: object) {
+        const canvas = document.getElementById('doughnut') as HTMLCanvasElement;
+        const options = {
+            type: 'doughnut',
+            data: chartData,
+            options: this.options,
+        };
+        new Chart(canvas, options);
+    }
 }
 </script>

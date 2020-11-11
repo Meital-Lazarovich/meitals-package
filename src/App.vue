@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <MPButton type="triangle" >
+    <MPButton type="rounded" outlined="true" :loading="isLoading" >
       test
     </MPButton>
-    <MPGraph></MPGraph>
+    <MPGraph type="bar" :loading="isLoading" :data="[25, 75, 30, 14, 27, 64, 39, 48, 15, 68, 57, 71]" :labels="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
+     colors="lightblue" title="Expenses per month" />
   </div>
 </template>
 
@@ -18,7 +19,13 @@ import MPGraph from './components/MPGraph.vue';
     MPGraph,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private isLoading: boolean = true;
+  
+  mounted() {
+    setTimeout(() => {this.isLoading = false}, 2000)
+  }
+}
 </script>
 
 <style lang="scss">

@@ -1,43 +1,47 @@
 <template>
-  <canvas id="bar" />
+    <canvas id="bar" />
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import Chart from 'chart.js'
+import { Component, Prop, Vue } from "vue-property-decorator";
+import Chart from "chart.js";
 
 @Component
 export default class BarChart extends Vue {
-  @Prop({ default: [] }) readonly labels!: Array<string>
-  @Prop({ default: [] }) readonly colors!: Array<string>
-  @Prop({ default: [] }) readonly data!: Array<number>
-  @Prop({
-    default: () => {
-      return Chart.defaults.bar
-    }
-  })
-  readonly options: object | undefined
-
-  mounted() {
-    this.createChart({
-      datasets: [
-        {
-          data: this.data,
-          backgroundColor: this.colors
-        }
-      ],
-      labels: this.labels
+    @Prop({ default: [] }) readonly labels!: Array<string>;
+    @Prop({ default: [] }) readonly data!: Array<number>;
+    @Prop() readonly title!: string;
+    @Prop({ default: 'rgb(86, 202, 97)' }) readonly colors!: string | Array<string>;
+    @Prop({
+        default: () => {
+            const options = Chart.defaults.bar;
+            options.scales.yAxes[0].ticks = {beginAtZero : true} // for making the chart start at zero rather than at the smallest value
+            return options
+        },
     })
-  }
+    readonly options: object | undefined;
 
-  createChart(chartData: object) {
-    const canvas = document.getElementById('bar') as HTMLCanvasElement
-    const options = {
-      type: 'bar',
-      data: chartData,
-      options: this.options
+    mounted() {
+        this.createChart({
+            datasets: [
+                {
+                    data: this.data,
+                    backgroundColor: this.colors,
+                    label: this.title,
+                },
+            ],
+            labels: this.labels,
+        });
     }
-    new Chart(canvas, options)
-  }
+
+    createChart(chartData: object) {
+        const canvas = document.getElementById("bar") as HTMLCanvasElement;
+        const options = {
+            type: "bar",
+            data: chartData,
+            options: this.options,
+        };
+        new Chart(canvas, options);
+    }
 }
 </script>

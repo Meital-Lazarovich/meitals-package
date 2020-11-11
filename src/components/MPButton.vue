@@ -1,36 +1,46 @@
 <template>
-    <button :class="{ rounded: type === 'rounded', round: type === 'round' }">
-        <slot />
+    <button :class="['mp-button', { rounded: type === 'rounded', round: type === 'round', outlined: outlined }]">
+        <img v-if="loading" src="https://i.gifer.com/ZZ5H.gif" alt="loading">
+        <slot v-else />
     </button>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-// import { primaryColor } from "../style/globals";
 
 @Component
 export default class MPButton extends Vue {
-    // @Prop() private msg!: string;
-    // @Prop({default: 'John doe'}) readonly name: string
-    // @Prop() private type!: 'square' | 'rounded' | 'round'
-    @Prop() private type!: string;
-    // @Prop() private style!: string;
+    @Prop() type?: string;
+    @Prop({ default:false }) outlined?: boolean;
+    @Prop({ default:false }) loading?: boolean;
 }
 </script>
 
 <style scoped lang="scss">
-button {
-    // background-color: primaryColor;
-    background-color: lightcyan;
-    padding: 5px;
-    border: 1px solid black;
+.mp-button {
+    background-color: #18C746;
+    font-size: 16px;
+    height: 56px;
+    width: 100px;
+    border: none;
+    color: #ffffff;
+    transition: backgroundColor, 0.3s;
     outline: none;
     cursor: pointer;
+    img {
+        height: 100%;
+        object-fit: contain;
+    }
     &.rounded {
-        border-radius: 10px;
+        border-radius: 100px;
     }
     &.round {
         border-radius: 50%;
+    }
+    &.outlined {
+        background-color: transparent;
+        border: 1px solid #0084F4;
+        color: inherit;
     }
 }
 </style>
