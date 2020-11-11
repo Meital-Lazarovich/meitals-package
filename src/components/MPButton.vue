@@ -1,5 +1,5 @@
 <template>
-    <button :class="['mp-button', { rounded: type === 'rounded', round: type === 'round', outlined: outlined }]">
+    <button :class="['mp-button', { rounded: type === 'rounded', round: type === 'round', outlined: outlined, disabled: loading}]" :disabled="loading">
         <img class="mp-loading-img" v-if="loading" src="https://i.gifer.com/ZZ5H.gif" alt="loading">
         <slot v-else class="mp-btn-content"/>
     </button>
@@ -41,6 +41,9 @@ export default class MPButton extends Vue {
         background-color: transparent;
         border: 1px solid #0084F4;
         color: inherit;
+    }
+    &.disabled {
+        cursor: not-allowed;
     }
 }
 </style>

@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import MPButton from '@/components/button/MPButton.vue';
+import MPButton from '@/components/MPButton.vue';
 
 describe('MPButton.vue', () => {
     it('sets props.type as a class when passed', () => {

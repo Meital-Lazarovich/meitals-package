@@ -16,6 +16,7 @@ export default class BarChart extends Vue {
         default: () => {
             const options = Chart.defaults.bar;
             options.scales.yAxes[0].ticks = {beginAtZero : true} // for making the chart start at zero rather than at the smallest value
+            options.legend = {display: false} // for hiding the labels-legend above the graph
             return options
         },
     })

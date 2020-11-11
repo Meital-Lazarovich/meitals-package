@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import MPGraph from '@/components/graph/MPGraph.vue';
+import MPGraph from '@/components/MPGraph.vue';
 
 describe('MPGraph.vue', () => {
     it('renders the graph content and not the loader when loading=true prop is passed', () => {
