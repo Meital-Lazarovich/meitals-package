@@ -27,9 +27,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch, Vue } from "vue-property-decorator";
-import PieChart from "./PieChart.vue";
-import BarChart from "./BarChart.vue";
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import PieChart from './charts/PieChart.vue';
+import BarChart from './charts/BarChart.vue';
 
 @Component({
     components: {
@@ -48,7 +48,7 @@ export default class MPGraph extends Vue {
 
     private isChartShown: boolean = true;
 
-    @Watch("data")
+    @Watch('data')
     dataChanged() {
         this.isChartShown = false;
         setTimeout(() => (this.isChartShown = true), 1);

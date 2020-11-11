@@ -1,8 +1,8 @@
 <template>
-    <canvas id='pie' />
+    <canvas ref="pie" />
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Chart from 'chart.js';
 
@@ -36,7 +36,7 @@ export default class PieChart extends Vue {
     }
 
     createChart(chartData: object) {
-        const canvas = document.getElementById('pie') as HTMLCanvasElement;
+        const canvas = this.$refs.pie as HTMLCanvasElement;
         const options = {
             type: 'pie',
             data: chartData,

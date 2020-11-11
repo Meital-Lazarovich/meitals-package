@@ -1,10 +1,10 @@
 <template>
-    <canvas id="bar" />
+    <canvas ref="bar" />
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import Chart from "chart.js";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import Chart from 'chart.js';
 
 @Component
 export default class BarChart extends Vue {
@@ -35,9 +35,9 @@ export default class BarChart extends Vue {
     }
 
     createChart(chartData: object) {
-        const canvas = document.getElementById("bar") as HTMLCanvasElement;
+        const canvas = this.$refs.bar as HTMLCanvasElement;
         const options = {
-            type: "bar",
+            type: 'bar',
             data: chartData,
             options: this.options,
         };
