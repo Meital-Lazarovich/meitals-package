@@ -1,7 +1,7 @@
 <template>
     <button :class="['mp-button', { rounded: type === 'rounded', round: type === 'round', outlined: outlined }]">
-        <img v-if="loading" src="https://i.gifer.com/ZZ5H.gif" alt="loading">
-        <slot v-else />
+        <img class="mp-loading-img" v-if="loading" src="https://i.gifer.com/ZZ5H.gif" alt="loading">
+        <slot v-else class="mp-btn-content"/>
     </button>
 </template>
 

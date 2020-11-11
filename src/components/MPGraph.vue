@@ -1,19 +1,21 @@
 <template>
-    <section class="graph">
+    <section class="mp-graph">
         <img
-            class="loading-img"
+            class="mp-loading-img"
             v-if="loading"
             src="https://i.gifer.com/ZZ5H.gif"
             alt="loading"
         />
-        <div v-else>
-            <DoughnutChart
-                v-if="isChartShown && type === 'doughnut'"
+        <div class="mp-graph-content" v-else>
+            <PieChart
+                class="mp-pie-chart"
+                v-if="isChartShown && type === 'pie'"
                 :data="data"
                 :labels="labels"
                 :colors="colors"
             />
             <BarChart
+                class="mp-bar-chart"
                 v-if="isChartShown && type === 'bar'"
                 :data="data"
                 :labels="labels"
@@ -26,17 +28,17 @@
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from "vue-property-decorator";
-import DoughnutChart from "./DoughnutChart.vue";
+import PieChart from "./PieChart.vue";
 import BarChart from "./BarChart.vue";
 
 @Component({
     components: {
         BarChart,
-        DoughnutChart,
+        PieChart,
     },
 })
 export default class MPGraph extends Vue {
-    @Prop({ default: "doughnut" }) type!: string;
+    @Prop({ default: 'pie' }) type!: string;
     @Prop({ default: () => [] }) labels!: Array<string>;
     @Prop() title?: string;
     @Prop({ default: () => [] }) data!: Array<number>;
@@ -55,9 +57,9 @@ export default class MPGraph extends Vue {
 </script>
 
 <style scoped lang="scss">
-.graph {
-  text-align: center;
-    .loading-img {
+.mp-graph {
+    text-align: center;
+    .mp-loading-img {
         height: 200px;
         padding-top: 100px;
     }

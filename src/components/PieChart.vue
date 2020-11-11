@@ -1,5 +1,5 @@
 <template>
-    <canvas id='doughnut' />
+    <canvas id='pie' />
 </template>
 
 <script lang='ts'>
@@ -7,7 +7,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import Chart from 'chart.js';
 
 @Component
-export default class DoughnutChart extends Vue {
+export default class PieChart extends Vue {
     @Prop({ default: [] }) readonly labels!: Array<string>;
     @Prop({ default: [] }) readonly data!: Array<number>;
     @Prop({
@@ -18,7 +18,7 @@ export default class DoughnutChart extends Vue {
     readonly colors!: Array<string>;
     @Prop({
         default: () => {
-            return Chart.defaults.doughnut;
+            return Chart.defaults.pie;
         },
     })
     readonly options: object | undefined;
@@ -36,9 +36,9 @@ export default class DoughnutChart extends Vue {
     }
 
     createChart(chartData: object) {
-        const canvas = document.getElementById('doughnut') as HTMLCanvasElement;
+        const canvas = document.getElementById('pie') as HTMLCanvasElement;
         const options = {
-            type: 'doughnut',
+            type: 'pie',
             data: chartData,
             options: this.options,
         };
