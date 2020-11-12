@@ -1,5 +1,5 @@
 <template>
-    <canvas ref="bar" />
+    <canvas ref="pie" />
 </template>
 
 <script lang="ts">
@@ -7,17 +7,21 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import Chart from 'chart.js';
 
 @Component
-export default class BarChart extends Vue {
+export default class PieChart extends Vue {
     @Prop({ default: [] }) readonly labels!: Array<string>;
     @Prop({ default: [] }) readonly data!: Array<number>;
-    @Prop() readonly title!: string;
-    @Prop({ default: 'rgb(86, 202, 97)' }) readonly colors!: string | Array<string>;
     @Prop({
         default: () => {
-            const options = Chart.defaults.bar;
-            options.scales.yAxes[0].ticks = {beginAtZero : true} // for making the chart start at zero rather than at the smallest value
-            options.legend = {display: false} // for hiding the labels-legend above the graph
-            return options
+            return ['#FF9999', '#FFCC99', '#FFFF99', '#CCFF99', '#99FF99', '#99FFFF', '#99CCFF', '#CC99FF', '#FF99FF', '#FF99CC']
+        }
+    }) 
+    readonly colors!: Array<string>;
+    @Prop({
+        default: () => {
+            const options = Chart.defaults.pie;
+            options.aspectRatio = 1;
+            options.responsive = false;
+            return options;
         },
     })
     readonly options: object | undefined;
@@ -28,7 +32,6 @@ export default class BarChart extends Vue {
                 {
                     data: this.data,
                     backgroundColor: this.colors,
-                    label: this.title,
                 },
             ],
             labels: this.labels,
@@ -36,9 +39,9 @@ export default class BarChart extends Vue {
     }
 
     createChart(chartData: object) {
-        const canvas = this.$refs.bar as HTMLCanvasElement;
+        const canvas = this.$refs.pie as HTMLCanvasElement;
         const options = {
-            type: 'bar',
+            type: 'pie',
             data: chartData,
             options: this.options,
         };

@@ -1,19 +1,16 @@
 {
   "name": "meitals-package",
-  "version": "3.0.9",
+  "version": "3.0.16",
   "private": false,
   "main": "./dist/meitals-package.common.js",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit --watch",
-    "build-bundle": "vue-cli-service build --target lib --name meitals-package ./src/components/index.ts",
-    "publish": "npm publish --access public"
+    "test:unit": "vue-cli-service test:unit",
+    "build-bundle": "vue-cli-service build --target lib --name meitals-package ./src/index.ts"
   },
   "files": [
     "dist/*",
-    "src/*",
-    "public/*",
     "*.json",
     "*.js",
     "plugins/*"
