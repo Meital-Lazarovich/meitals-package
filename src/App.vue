@@ -17,8 +17,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import MPButton from './components/MPButton.vue';
-import MPGraph from './components/MPGraph.vue';
+import MPButton from './components/MPButton/MPButton.vue';
+import MPGraph from './components/MPGraph/MPGraph.vue';
 
 @Component({
   components: {
