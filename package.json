@@ -1,6 +1,6 @@
 {
   "name": "meitals-package",
-  "version": "3.0.17",
+  "version": "3.0.18",
   "private": false,
   "main": "./dist/meitals-package.common.js",
   "scripts": {
