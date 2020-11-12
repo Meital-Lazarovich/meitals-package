@@ -1,22 +1,22 @@
 <template>
     <section class="mp-graph">
         <img
-            class="mp-loading-img"
             v-if="loading"
+            class="mp-loading-img"
             src="https://i.gifer.com/ZZ5H.gif"
             alt="loading"
         />
         <div class="mp-graph-content" v-else>
             <PieChart
-                class="mp-pie-chart"
                 v-if="isChartShown && type === 'pie'"
+                class="mp-pie-chart"
                 :data="data"
                 :labels="labels"
                 :colors="colors"
             />
             <BarChart
-                class="mp-bar-chart"
                 v-if="isChartShown && type === 'bar'"
+                class="mp-bar-chart"
                 :data="data"
                 :labels="labels"
                 :title="title"
