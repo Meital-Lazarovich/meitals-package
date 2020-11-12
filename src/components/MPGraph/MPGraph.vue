@@ -28,11 +28,15 @@
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import PieChart from './charts/PieChart.vue';
+import BarChart from './charts/BarChart.vue';
 
 @Component({
     components: {
-        BarChart: () => import('./charts/BarChart.vue'),
-        PieChart: () => import('./charts/PieChart.vue')
+        BarChart,
+        PieChart
+        // BarChart: () => import('./charts/BarChart.vue'),
+        // PieChart: () => import('./charts/PieChart.vue')
     },
 })
 export default class MPGraph extends Vue {
